@@ -1,7 +1,5 @@
-package cn.oneseek;
+package cn.oneseek.tools;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
@@ -9,29 +7,9 @@ import java.util.List;
 
 /**
  * @Author: Chuang
- * @Date: 2020/3/28 16:22
+ * @Date: 2020/3/29 17:52
  */
-class IOTools {
-    boolean createFile(String filePath,String fileName) {
-        try {
-            File dir=new File(filePath);
-            if(!dir.exists()){
-                dir.mkdir();
-            }
-
-            File file = new File(filePath+fileName);
-            if (file.exists()) {
-                file.delete();
-                return file.createNewFile();
-            } else {
-                return file.createNewFile();
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-        return false;
-    }
-
+public class ShellTools {
     public List<String> runStat(String shellPath) {
         List<String> strList = new ArrayList<String>();
         try {

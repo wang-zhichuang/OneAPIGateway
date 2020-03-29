@@ -1,4 +1,7 @@
-package cn.oneseek;
+package cn.oneseek.service;
+
+import cn.oneseek.tools.IOTools;
+import cn.oneseek.tools.ShellTools;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,13 +9,16 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @Author: Chuang
  * @Date: 2020/3/28 23:16
  */
-public class HttpService {
+public class HttpService implements Service{
+    private ShellTools shellTools = new ShellTools();
+    private IOTools ioTools = new IOTools();
     public void run(){
         try {
             /*监听端口8888*/
@@ -26,7 +32,13 @@ public class HttpService {
             e.printStackTrace();
         }
     }
-    public static void service(Socket socket)
+
+    @Override
+    public void close() {
+
+    }
+
+    private void service(Socket socket)
     {
         new Thread(() -> {
             try {
@@ -58,19 +70,19 @@ public class HttpService {
             }
         }).start();
     }
-    public static List<String> handleService(String requestHeader){
-        String fileName;
-        String shellPath = "./";
+    private List<String> handleService(String requestHeader){
         int end = requestHeader.indexOf("HTTP/");
-        fileName = requestHeader.substring(5, end-1); // 得到请求参数
-//        System.out.println(shellPath+"\t"+fileName);
-        IOTools ioTools = new IOTools();
+        String fileName = requestHeader.substring(5, end-1); // 得到请求参数
+        String shellPath = "./";
+
         if(!fileName.equals("favicon.ico")){
-            ioTools.createFile(shellPath+"test/",fileName);
+            boolean createFileIsSuccess = ioTools.createFile(shellPath+"test/",fileName);
+            System.out.println("创建文件："+fileName+"成功："+createFileIsSuccess);
         }
         String shell = shellPath + "test.sh " + shellPath +"test/"+ fileName;
-        List<String> statInfo = ioTools.runStat(shell);
-//        System.out.println(shell);
+        List<String> statInfo = new ArrayList<>();
+        statInfo = shellTools.runStat(shell);;
+
         return statInfo;
     }
 }
