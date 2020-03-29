@@ -16,7 +16,7 @@ import java.util.List;
  * @Author: Chuang
  * @Date: 2020/3/28 23:16
  */
-public class HttpService implements Service{
+public class HttpServer implements Server {
     private ShellTools shellTools = new ShellTools();
     private IOTools ioTools = new IOTools();
     public void run(){
@@ -48,7 +48,7 @@ public class HttpService implements Service{
                 String requestHeader;
                 List<String> res = null;
                 BufferedReader bd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                requestHeader = bd.readLine();
+                requestHeader = bd.readLine(); // 只要 HTTP Request的第一行 读出 请求文件名
                 if(requestHeader!=null){
                     res = handleService(requestHeader);
                     System.out.println("处理请求...");
@@ -75,7 +75,7 @@ public class HttpService implements Service{
         String fileName = requestHeader.substring(5, end-1); // 得到请求参数
         String shellPath = "./";
 
-        if(!fileName.equals("favicon.ico")){
+        if(!fileName.equals("favicon.ico")){ //会有一个不需要的请求"favicon.ico"
             boolean createFileIsSuccess = ioTools.createFile(shellPath+"test/",fileName);
             System.out.println("创建文件："+fileName+"成功："+createFileIsSuccess);
         }

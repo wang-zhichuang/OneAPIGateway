@@ -1,7 +1,7 @@
 package cn.oneseek;
 
-import cn.oneseek.service.HttpService;
-import cn.oneseek.service.Service;
+import cn.oneseek.service.HttpServer;
+import cn.oneseek.service.Server;
 
 /**
  * @Author: Chuang
@@ -9,8 +9,8 @@ import cn.oneseek.service.Service;
  */
 public class Main {
     public static void main(String[] args) {
-        Service httpService = new HttpService();
-        httpService.run();
+        Server httpServer = new HttpServer();
+        httpServer.run();
     }
 
 
