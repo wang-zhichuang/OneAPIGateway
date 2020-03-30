@@ -8,4 +8,5 @@
 - [ ] 使用netty
 
 [startServer.sh](https://raw.githubusercontent.com/OneSeek/APIGateway/master/startService.sh)
-[test.sh](https://raw.githubusercontent.com/OneSeek/APIGateway/master/APIGateway.jar)
+[test.sh](https://raw.githubusercontent.com/OneSeek/APIGateway/master/test.sh)
+[APIGateway.jar](https://raw.githubusercontent.com/OneSeek/APIGateway/master/APIGateway.jar)
