@@ -1,5 +1,6 @@
 package cn.oneseek.core.server;
 
+import cn.oneseek.AppConfigUtil;
 import cn.oneseek.tools.IOTools;
 import cn.oneseek.tools.ShellTools;
 
@@ -25,7 +26,7 @@ public class HttpServer implements Server {
             /*监听端口8888*/
             ServerSocket serverSocket = new ServerSocket(8888);
             System.out.println("正在运行：8888");
-            while (Data.isRun) {
+            while (AppConfigUtil.isRun) {
                 Socket socket = serverSocket.accept();
                 service(socket);
             }
