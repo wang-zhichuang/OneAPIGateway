@@ -1,7 +1,7 @@
 package cn.oneseek;
 
-import cn.oneseek.core.service.HttpServer;
-import cn.oneseek.core.service.Server;
+import cn.oneseek.core.server.HttpServer;
+import cn.oneseek.core.server.Server;
 
 /**
  * @Author: Chuang

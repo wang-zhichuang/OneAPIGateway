@@ -1,4 +1,4 @@
-package cn.oneseek.core.service;
+package cn.oneseek.core.server;
 
 import cn.oneseek.tools.IOTools;
 import cn.oneseek.tools.ShellTools;
