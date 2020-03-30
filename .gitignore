@@ -1,5 +1,4 @@
 # Project exclude paths
-/out/
 /.idea/
 /META-INF/
 APIGateway.iml

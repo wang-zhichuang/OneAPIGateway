@@ -15,7 +15,10 @@ public class IOTools {
     public boolean createFile(String filePath, String fileName) {
         try {
             File dir=new File(filePath);
-            if(!dir.exists()){
+            if(!dir.exists()||!dir.isDirectory()){
+                if(!dir.isDirectory()){ //不是文件夹删掉创建一个文件夹
+                    dir.delete();
+                }
                 boolean mkdirIsSuccess = dir.mkdir();
                 System.out.println("新建文件夹"+fileName+":"+mkdirIsSuccess);
             }
