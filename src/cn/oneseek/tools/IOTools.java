@@ -15,7 +15,7 @@ public class IOTools {
     public boolean createFile(String filePath, String fileName) {
         try {
             File dir=new File(filePath);
-            if(!dir.exists()||!dir.isDirectory()){
+            if(!dir.exists()){
                 if(!dir.isDirectory()){ //不是文件夹删掉创建一个文件夹
                     dir.delete();
                 }
