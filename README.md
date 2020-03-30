@@ -6,4 +6,5 @@
 - [ ] 给log日志加时间戳，每次运行生成一个log文件
 - [ ] 提高性能NIO、AIO实现Server类
 - [ ] 使用netty
-[这是一个链接](https://github.com/OneSeek/APIGateway/startServer.sh)
+
+[startServer.sh](./startServer.sh)
