@@ -10,7 +10,7 @@ import java.util.List;
  * @Date: 2020/3/29 17:52
  */
 public class ShellTools {
-    public List<String> runStat(String shellPath) {
+    public List<String> runShell(String shellPath) {
         List<String> strList = new ArrayList<String>();
         try {
             Process process = Runtime.getRuntime().exec(new String[] { "/bin/sh", "-c", shellPath }, null, null);
@@ -21,7 +21,7 @@ public class ShellTools {
             while ((line = input.readLine()) != null) {
                 strList.add(line);
             }
-        } catch (final Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

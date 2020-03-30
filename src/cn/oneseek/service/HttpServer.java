@@ -17,6 +17,7 @@ import java.util.List;
  * @Date: 2020/3/28 23:16
  */
 public class HttpServer implements Server {
+    private ServerSocket serverSocket = null;
     private ShellTools shellTools = new ShellTools();
     private IOTools ioTools = new IOTools();
     public void run(){
@@ -35,7 +36,11 @@ public class HttpServer implements Server {
 
     @Override
     public void close() {
-
+        try {
+            serverSocket.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void service(Socket socket)
@@ -49,6 +54,7 @@ public class HttpServer implements Server {
                 List<String> res = null;
                 BufferedReader bd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 requestHeader = bd.readLine(); // 只要 HTTP Request的第一行 读出 请求文件名
+
                 if(requestHeader!=null){
                     res = handleService(requestHeader);
                     System.out.println("处理请求...");
@@ -81,7 +87,7 @@ public class HttpServer implements Server {
         }
         String shell = shellPath + "test.sh " + shellPath +"test/"+ fileName;
         List<String> statInfo = new ArrayList<>();
-        statInfo = shellTools.runStat(shell);;
+        statInfo = shellTools.runShell(shell); // 运行shell命令 得到文件信息
 
         return statInfo;
     }
