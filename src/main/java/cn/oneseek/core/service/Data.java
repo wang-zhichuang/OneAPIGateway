@@ -1,4 +1,4 @@
-package cn.oneseek.service;
+package cn.oneseek.core.service;
 
 /**
  * @Author: Chuang
