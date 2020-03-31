@@ -23,18 +23,22 @@ public class HttpServer {
         this.port = port;
     }
 
-    public void run() throws Exception{
-        ServerBootstrap bootstrap = new ServerBootstrap();
-        EventLoopGroup boss = new NioEventLoopGroup();
-        EventLoopGroup work = new NioEventLoopGroup();
-        bootstrap.group(boss,work)
-                .handler(new LoggingHandler(LogLevel.DEBUG))
-                .channel(NioServerSocketChannel.class)
-                .childHandler(new HttpServerInitializer());
+    public void run() {
+        try {
+            ServerBootstrap bootstrap = new ServerBootstrap();
+            EventLoopGroup boss = new NioEventLoopGroup();
+            EventLoopGroup work = new NioEventLoopGroup();
+            bootstrap.group(boss,work)
+                    .handler(new LoggingHandler(LogLevel.DEBUG))
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(new HttpServerInitializer());
 
-        ChannelFuture f = bootstrap.bind(new InetSocketAddress(port)).sync();
-        System.out.println(" server start up on port : " + port);
-        f.channel().closeFuture().sync();
+            ChannelFuture f = bootstrap.bind(new InetSocketAddress(port)).sync();
+            System.out.println(" server start up on port : " + port);
+            f.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 

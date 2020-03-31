@@ -19,8 +19,7 @@ import java.util.List;
  */
 public class HttpServer implements Server {
     private ServerSocket serverSocket = null;
-    private ShellTools shellTools = new ShellTools();
-    private IOTools ioTools = new IOTools();
+    HttpServerHandler httpServerHandler = new HttpServerHandler();
     public void run(){
         try {
             /*监听端口8888*/
@@ -57,7 +56,7 @@ public class HttpServer implements Server {
                 requestHeader = bd.readLine(); // 只要 HTTP Request的第一行 读出 请求文件名
 
                 if(requestHeader!=null){
-                    res = handleService(requestHeader);
+                    res = httpServerHandler.handleService(requestHeader);
 //                    System.out.println("处理请求...");
                 }
 
@@ -77,19 +76,5 @@ public class HttpServer implements Server {
             }
         }).start();
     }
-    private List<String> handleService(String requestHeader){
-        int end = requestHeader.indexOf("HTTP/");
-        String fileName = requestHeader.substring(5, end-1); // 得到请求参数
-        String shellPath = "./";
 
-        if(!fileName.equals("favicon.ico")){ //会有一个不需要的请求"favicon.ico"
-            boolean createFileIsSuccess = ioTools.createFile(shellPath+"test/",fileName);
-            System.out.println("创建文件："+fileName+"成功："+createFileIsSuccess);
-        }
-        String shell = shellPath + "test.sh " + shellPath +"test/"+ fileName;
-        List<String> statInfo = new ArrayList<>();
-        statInfo = shellTools.runShell(shell); // 运行shell命令 得到文件信息
-
-        return statInfo;
-    }
 }
