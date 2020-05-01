@@ -40,7 +40,9 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
             String shell = shellPath + "test.sh " + shellPath +"test/"+ fileName;
             List<String> statInfo = new ArrayList<>();
             statInfo = shellTools.runShell(shell); // 运行shell命令 得到文件信息
-
+            if(statInfo==null){
+                statInfo.add("后端执行出错");
+            }
             String msg = "<html><head><title>test</title></head><body>"+ statInfo+"</body></html>";
 
             // 创建http响应
