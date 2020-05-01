@@ -6,12 +6,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 
-/**
- * @Author: Chuang
- * @Date: 2020/3/31 1:57
- */
-public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
+import java.net.Socket;
 
+public class NettyHttpServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel channel) throws Exception {
         //channel 代表了一个socket.

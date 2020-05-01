@@ -4,8 +4,8 @@ package cn.oneseek;
 //import cn.oneseek.core.server.Server;
 //import cn.oneseek.core.nettyserver.HttpServer;
 
-import cn.oneseek.core.nettyserver.demo.HttpServer;
-import cn.oneseek.core.nettyserver.demo2.NettyHttpServer;
+
+import cn.oneseek.core.nettyserver.NettyHttpServer;
 
 /**
  * @Author: Chuang
@@ -28,7 +28,7 @@ public class Main {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        new NettyHttpServer().run(8888);
+        new NettyHttpServer(8888).run();
     }
 
 

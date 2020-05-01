@@ -9,17 +9,11 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 import java.net.InetSocketAddress;
-
-
-/**
- * netty server
- * 2018/11/1.
- */
-public class HttpServer {
+public class NettyHttpServer {
 
     int port ;
 
-    public HttpServer(int port){
+    public NettyHttpServer(int port){
         this.port = port;
     }
 
@@ -31,7 +25,7 @@ public class HttpServer {
             bootstrap.group(boss,work)
                     .handler(new LoggingHandler(LogLevel.DEBUG))
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new HttpServerInitializer());
+                    .childHandler(new NettyHttpServerInitializer());
 
             ChannelFuture f = bootstrap.bind(new InetSocketAddress(port)).sync();
             System.out.println(" server start up on port : " + port);
@@ -43,7 +37,7 @@ public class HttpServer {
     }
 
     public static void main(String[] args) {
-        HttpServer httpServer = new HttpServer(8888);
+        NettyHttpServer httpServer = new NettyHttpServer(8888);
         try {
             httpServer.run();
         } catch (Exception e) {
