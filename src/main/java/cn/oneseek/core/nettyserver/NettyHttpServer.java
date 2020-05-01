@@ -28,7 +28,7 @@ public class NettyHttpServer {
                     .childHandler(new NettyHttpServerInitializer());
 
             ChannelFuture f = bootstrap.bind(new InetSocketAddress(port)).sync();
-            System.out.println(" server start up on port : " + port);
+            System.out.println("服务启动， 监听端口 : " + port);
             f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
